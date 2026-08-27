@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imran Khan · A Nation Remembers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+        /* ─────────────── RESET & BASE ─────────────── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0b0b0b;
+            --charcoal: #141414;
+            --dark-gray: #1e1e1e;
+            --off-white: #e8e4de;
+            --warm-white: #d4cec6;
+            --crimson: #a82020;
+            --crimson-glow: rgba(168, 32, 32, 0.25);
+            --border-light: rgba(255, 255, 255, 0.06);
+            --text-muted: #8a8580;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--black);
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--black);
+            color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─────────────── FILM GRAIN ─────────────── */
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.035;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 256px 256px;
+        }
+
+        /* ─────────────── PAPER TEXTURE ─────────────── */
+        .paper-texture {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.04;
+            mix-blend-mode: multiply;
+                background-image: repeating-linear-gradient(90deg,
+        transparent 0px,
+        transparent 14px,
+        rgba(50, 50, 50, 0.3) 14px,
+        #000000 16px,
+        #000000 30px,
+        transparent 30px,
+        transparent 44px
+    );
+}
+
+        /* ─────────────── SCROLLBAR ─────────────── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--crimson);
+            border-radius: 3px;
+        }
+
+        /* ─────────────── NAVIGATION ─────────────── */
+        .top-tagline {
+            text-align: center;
+            padding: 14px 0 4px;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            background: var(--black);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .top-tagline span {
+            color: var(--off-white);
+            font-weight: 600;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(11, 11, 11, 0.80);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid var(--border-light);
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.25s;
+            position: relative;
+        }
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--crimson);
+            transition: width 0.3s ease;
+        }
+        .navbar a:hover {
+            color: var(--off-white);
+        }
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .navbar .nav-divider {
+            color: var(--border-light);
+            font-weight: 300;
+        }
+
+        /* ─────────────── HERO ─────────────── */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 48px 60px;
+            position: relative;
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .hero-inner {
+            display: flex;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            gap: 20px;
+            align-items: stretch;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ─── LEFT COLUMN ─── */
+        .hero-left {
+            flex: 0 0 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 16px;
+            z-index: 3;
+        }
+
+        .hero-left .eyebrow {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .hero-left h1 {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: 64px;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: var(--off-white);
+            margin-bottom: 2px;
+        }
+
+        .hero-left .subhead-red {
+            font-family: var(--sans);
+            font-weight: 800;
+            font-size: 26px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--crimson);
+            margin-bottom: 10px;
+            text-shadow: 0 0 40px rgba(168, 32, 32, 0.15);
+        }
+
+        .hero-left .supporting {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            max-width: 320px;
+            line-height: 1.7;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-left .supporting em {
+            color: var(--off-white);
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        /* crowd silhouette */
+        .crowd-silhouette {
+            position: relative;
+            margin-top: 24px;
+            height: 80px;
+            overflow: hidden;
+            opacity: 0.25;
+        }
+        .crowd-silhouette svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* ─── CENTER COLUMN (COUNTER) ─── */
+        .hero-center {
+            flex: 0 0 34%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 12px;
+            z-index: 3;
+        }
+
+        .counter-display {
+            font-family: var(--mono);
+            font-weight: 300;
+            font-size: 82px;
+            line-height: 1;
+            color: var(--crimson);
+            letter-spacing: -2px;
+            text-shadow: 0 0 60px rgba(168, 32, 32, 0.12);
+            margin-bottom: 4px;
+            display: flex;
+            gap: 8px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .counter-display .colon {
+            color: var(--text-muted);
+            font-weight: 200;
+            font-size: 70px;
+        }
+        .counter-display .num-block {
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .counter-labels {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        .counter-labels span {
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .counter-since {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .counter-since strong {
+            color: var(--crimson);
+            font-weight: 600;
+        }
+
+        .counter-quote {
+            margin-top: 20px;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 18px;
+            color: var(--off-white);
+            max-width: 400px;
+            line-height: 1.5;
+            letter-spacing: 0.3px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 18px;
+        }
+        .counter-quote .attribution {
+            display: block;
+            font-style: normal;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+        .counter-quote .attribution strong {
+            color: var(--off-white);
+            font-weight: 600;
+        }
+
+        /* ─── RIGHT COLUMN (PORTRAIT) ─── */
+        .hero-right {
+            flex: 0 0 30%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            z-index: 3;
+            min-height: 500px;
+        }
+
+        .portrait-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+.prison-bars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    /* 🔥 FAT & DARK: Opacity 100%, 20px thick rods */
+    background: repeating-linear-gradient(90deg,
+        transparent 0px,
+        transparent 12px,          /* Gap between bars */
+        #000000 12px,              /* Pure black starts */
+        #000000 32px,              /* Bar is 20px thick (FAT) */
+        transparent 32px,
+        transparent 52px           /* Total repeat width */
+    );
+    /* 3D Metal effect to make it look like real cylindrical pipes */
+    background-image: repeating-linear-gradient(90deg,
+        transparent 0px,
+        transparent 12px,
+        rgba(80, 80, 80, 0.5) 12px, /* Shiny metal highlight on left edge */
+        #000000 14px,               /* Pure black main body */
+        #000000 32px,
+        transparent 32px,
+        transparent 52px
+    );
+    /* Adds a dark shadow over the whole portrait edges to blend the bars in */
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
+}
+        .portrait-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--dark-gray);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .portrait-placeholder svg {
+            width: 85%;
+            height: 85%;
+            opacity: 0.35;
+            filter: grayscale(1) contrast(1.2);
+        }
+        .portrait-placeholder .rim-light {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.07) 70%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* ─────────────── BIRDS ─────────────── */
+        .birds {
+            position: absolute;
+            top: 6%;
+            right: 4%;
+            z-index: 1;
+            opacity: 0.25;          /* ← Increased from 0.12 for better visibility */
+            pointer-events: none;
+            height: 80px;           /* Add a fixed height so the image has space */
+            width: 180px;           /* Add width to contain the birds */
+        }
+        .birds img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+}
+
+        /* ─────────────── MINAR-E-PAKISTAN ─────────────── */
+        .minar-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            z-index: 1;
+            opacity: 0.4;  /* Increased from 0.03 */
+            pointer-events: none;
+        }
+        .minar-silhouette img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            mix-blend-mode: screen;  /* Makes black disappear, white glow */
+            filter: brightness(2) contrast(1.2); /* Brightens your image */
+        }
+
+
+        /* ─────────────── STORY SECTION ─────────────── */
+        .story-section {
+            padding: 80px 48px 60px;
+            background: var(--charcoal);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .story-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+        }
+
+        .story-text {
+            flex: 1;
+        }
+        .story-text .label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .story-text h2 {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 36px;
+            letter-spacing: -0.5px;
+            color: var(--off-white);
+            margin-bottom: 12px;
+        }
+        .story-text p {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--text-muted);
+            max-width: 600px;
+            line-height: 1.8;
+            letter-spacing: 0.2px;
+        }
+        .story-text .btn-story {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 28px;
+            border: 1px solid var(--border-light);
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            background: transparent;
+        }
+        .story-text .btn-story:hover {
+            background: var(--crimson);
+            border-color: var(--crimson);
+            box-shadow: 0 0 30px rgba(168, 32, 32, 0.25);
+        }
+
+        .story-quote {
+            flex: 0 0 320px;
+            text-align: right;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 22px;
+            color: var(--off-white);
+            line-height: 1.5;
+            border-left: 1px solid var(--border-light);
+            padding-left: 30px;
+        }
+        .story-quote .attribution {
+            display: block;
+            font-style: normal;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* ─────────────── TIMELINE ─────────────── */
+        .timeline-section {
+            padding: 70px 48px 80px;
+            background: var(--black);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .timeline-header {
+            max-width: 1440px;
+            margin: 0 auto 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .timeline-header h2 {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 32px;
+            letter-spacing: -0.5px;
+            color: var(--off-white);
+        }
+        .timeline-header h2 small {
+            display: block;
+            font-family: var(--sans);
+            font-weight: 400;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .timeline-track {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 20px 0 10px;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            top: 38px;
+            left: 30px;
+            right: 30px;
+            height: 1px;
+            background: var(--border-light);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+            padding: 0 12px;
+            max-width: 200px;
+        }
+
+        .timeline-item .node {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--charcoal);
+            border: 2px solid var(--border-light);
+            margin-bottom: 12px;
+            transition: border-color 0.4s;
+        }
+        .timeline-item .node.active {
+            border-color: var(--crimson);
+            box-shadow: 0 0 20px rgba(168, 32, 32, 0.15);
+        }
+        .timeline-item .node.active::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            background: var(--crimson);
+        }
+        .timeline-item .node {
+            position: relative;
+        }
+
+        .timeline-item .date {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .timeline-item .date strong {
+            color: var(--off-white);
+            font-weight: 500;
+        }
+
+        .timeline-item .title {
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--off-white);
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item .desc {
+            font-size: 12px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.6;
+            letter-spacing: 0.2px;
+        }
+        .timeline-item .desc .highlight {
+            color: var(--crimson);
+            font-weight: 400;
+        }
+
+        /* ─────────────── THREE CONCEPTS ─────────────── */
+        .concepts-section {
+            padding: 80px 48px 70px;
+            background: var(--charcoal);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .concepts-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .concept-card {
+            flex: 1;
+            padding: 20px 10px;
+            border: 1px solid var(--border-light);
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: border-color 0.3s;
+        }
+        .concept-card:hover {
+            border-color: var(--crimson);
+        }
+        .concept-card .big {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--off-white);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .concept-card .big .accent {
+            color: var(--crimson);
+        }
+        .concept-card .sub {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ─────────────── BOTTOM QUOTE ─────────────── */
+        .bottom-quote {
+            padding: 60px 48px 40px;
+            background: var(--black);
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .bottom-quote .ik-line {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--off-white);
+            letter-spacing: 1px;
+        }
+        .bottom-quote .ik-line .accent {
+            color: var(--crimson);
+        }
+
+        /* ─────────────── FOOTER ─────────────── */
+        .footer {
+            padding: 30px 48px 24px;
+            background: var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 24px;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+        .footer-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+        .footer-nav a:hover {
+            color: var(--off-white);
+        }
+
+        .footer-right {
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+        .footer-right em {
+            font-style: normal;
+            color: var(--crimson);
+        }
+
+        .hashtag {
+            text-align: center;
+            padding: 14px 0;
+            background: var(--black);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .hashtag span {
+            color: var(--crimson);
+        }
+
+        /* ─────────────── RESPONSIVE ─────────────── */
+        @media (max-width: 1200px) {
+            .hero-left h1 {
+                font-size: 48px;
+            }
+            .hero-left .subhead-red {
+                font-size: 20px;
+            }
+            .counter-display {
+                font-size: 62px;
+            }
+            .hero-left {
+                flex: 0 0 28%;
+            }
+            .hero-center {
+                flex: 0 0 36%;
+            }
+            .hero-right {
+                flex: 0 0 28%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 30px 24px 40px;
+                min-height: auto;
+            }
+            .hero-inner {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+            .hero-left {
+                flex: 0 0 100%;
+                padding-right: 0;
+                text-align: center;
+                align-items: center;
+            }
+            .hero-left .supporting {
+                max-width: 100%;
+            }
+            .hero-center {
+                flex: 0 0 100%;
+                order: 2;
+            }
+            .hero-right {
+                flex: 0 0 100%;
+                order: 3;
+                justify-content: center;
+                min-height: 300px;
+            }
+            .portrait-wrapper {
+                max-width: 280px;
+            }
+            .crowd-silhouette {
+                height: 60px;
+            }
+            .navbar {
+                padding: 10px 20px;
+                gap: 16px;
+            }
+            .navbar a {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+            }
+            .story-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .story-quote {
+                flex: 0 0 auto;
+                text-align: left;
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid var(--border-light);
+                padding-top: 20px;
+                width: 100%;
+            }
+            .timeline-track {
+                flex-direction: column;
+                gap: 28px;
+                padding: 0;
+            }
+            .timeline-track::before {
+                display: none;
+            }
+            .timeline-item {
+                max-width: 100%;
+                padding: 0;
+                padding-left: 30px;
+                border-left: 1px solid var(--border-light);
+            }
+            .timeline-item .node {
+                position: absolute;
+                left: -7px;
+                margin-top: 2px;
+            }
+            .concepts-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 24px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-left h1 {
+                font-size: 36px;
+            }
+            .hero-left .subhead-red {
+                font-size: 16px;
+            }
+            .counter-display {
+                font-size: 42px;
+                gap: 4px;
+            }
+            .counter-display .colon {
+                font-size: 36px;
+            }
+            .counter-display .num-block {
+                min-width: 40px;
+            }
+            .counter-labels {
+                gap: 12px;
+                font-size: 8px;
+                letter-spacing: 1.5px;
+            }
+            .counter-labels span {
+                min-width: 40px;
+            }
+            .counter-since {
+                font-size: 11px;
+            }
+            .counter-quote {
+                font-size: 15px;
+                max-width: 100%;
+            }
+            .portrait-wrapper {
+                max-width: 200px;
+            }
+            .story-text h2 {
+                font-size: 26px;
+            }
+            .story-text p {
+                font-size: 14px;
+            }
+            .story-quote {
+                font-size: 18px;
+            }
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .timeline-header h2 {
+                font-size: 26px;
+            }
+            .bottom-quote .ik-line {
+                font-size: 20px;
+            }
+            .navbar {
+                padding: 8px 12px;
+                gap: 10px;
+            }
+            .navbar a {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+            .top-tagline {
+                font-size: 10px;
+                letter-spacing: 2px;
+                padding: 10px 0 4px;
+            }
+            .footer-nav {
+                gap: 14px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TEXTURES -->
+    <div class="grain-overlay"></div>
+    <div class="paper-texture"></div>
+
+    <!-- ─── TOP TAGLINE ─── -->
+    <div class="top-tagline">A Nation Remembers &nbsp;·&nbsp; <span>Truth Lives On</span></div>
+
+    <!-- ─── NAVIGATION ─── -->
+    <nav class="navbar">
+        <a href="#">Home</a>
+        <span class="nav-divider">|</span>
+        <a href="#">Timeline</a>
+        <span class="nav-divider">|</span>
+        <a href="#">About</a>
+        <span class="nav-divider">|</span>
+        <a href="#">Updates</a>
+        <span class="nav-divider">|</span>
+        <a href="#">Gallery</a>
+        <span class="nav-divider">|</span>
+        <a href="#">Contact</a>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero" id="home">
+        <!-- Minar-e-Pakistan silhouette -->
+        <div class="minar-silhouette">
+            <img src="minar.png" alt="Minar-e-Pakistan" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.8; filter: grayscale(1) brightness(0.3);">
+        </div>
+
+        <!-- Birds -->
+            <div class="birds">
+                <img src="birds.png" alt="Flying birds" style="height: 100%; width: auto; opacity: 0.9; filter: brightness(0.8);">
+            </div>
+        <div class="hero-inner">
+
+            <!-- LEFT -->
+            <div class="hero-left">
+                <div class="eyebrow">A Leader Imprisoned. A Movement Unstoppable.</div>
+                <h1>IMRAN KHAN</h1>
+                <div class="subhead-red">Time Behind Bars</div>
+                <p class="supporting">
+                    A man who chose a harder path, <em>not for power</em>, but for a better Pakistan.
+                </p>
+                <!-- Crowd silhouette -->
+                <div class="crowd-silhouette">
+                    <img src="pak.png" alt="Crowd silhouette" style="width:100%; height:100%; object-fit:cover; opacity:0.8; mix-blend-mode:multiply;">
+                </div>
+            </div>
+
+            <!-- CENTER: COUNTER -->
+            <div class="hero-center">
+                <div class="counter-display" id="counterDisplay">
+                    <span class="num-block" id="daysDisplay">779</span>
+                    <span class="colon">:</span>
+                    <span class="num-block" id="hoursDisplay">00</span>
+                    <span class="colon">:</span>
+                    <span class="num-block" id="minutesDisplay">32</span>
+                    <span class="colon">:</span>
+                    <span class="num-block" id="secondsDisplay">14</span>
+                </div>
+                <div class="counter-labels">
+                    <span>Days</span>
+                    <span>Hours</span>
+                    <span>Minutes</span>
+                    <span>Seconds</span>
+                </div>
+
+                <div class="counter-since">
+                    Since <strong>5 August 2023, 12:59 PM (PKT)</strong>
+                </div>
+
+                <div class="counter-quote">
+                    “You can imprison a man, but you cannot imprison a nation.”
+                    <span class="attribution">— <strong>Imran Khan</strong></span>
+                </div>
+            </div>
+
+            <!-- RIGHT: PORTRAIT -->
+            <div class="hero-right">
+                <div class="portrait-wrapper">
+                    <div class="portrait-placeholder">
+                        <!-- Placeholder silhouette – replace with your own image -->
+                        <img src="ikimage.png" alt="Imran Khan Portrait" style="width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.15) brightness(0.75);">
+                        <div class="rim-light"></div>
+                    </div>
+                    <!-- Prison bars overlay -->
+                    <div class="prison-bars"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── STORY SECTION ─── -->
+    <section class="story-section">
+        <div class="story-inner">
+            <div class="story-text">
+                <div class="label">The Story</div>
+                <h2>A Journey of Resilience</h2>
+                <p>
+                    From a cricketer who united a nation, to a leader who dared to challenge the status quo — Imran Khan’s journey has always been about a bigger Pakistan.<br />
+                    Today, he remains in prison, but his vision, his message and his impact continue to live on in the hearts of millions.
+                </p>
+                <a href="#" class="btn-story">Our Story →</a>
+            </div>
+            <div class="story-quote">
+                “Some fight for power, he fought for a better Pakistan.”
+                <span class="attribution">— A nation remembers</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── TIMELINE ─── -->
+    <section class="timeline-section" id="timeline">
+        <div class="timeline-header">
+            <h2>
+                Key Timeline
+                <small>Key Events</small>
+            </h2>
+        </div>
+
+        <div class="timeline-track">
+
+            <div class="timeline-item">
+                <div class="node"></div>
+                <div class="date"><strong>5 AUG</strong> 2023</div>
+                <div class="title">Arrested</div>
+                <div class="desc">
+                    Following conviction in the <span class="highlight">Toshakhana</span> case.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="node active"></div>
+                <div class="date"><strong>5 AUG</strong> 2023</div>
+                <div class="title">Transferred</div>
+                <div class="desc">
+                    Moved to <span class="highlight">Attock Jail</span> after arrest.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="node"></div>
+                <div class="date"><strong>26 SEP</strong> 2023</div>
+                <div class="title">Moved</div>
+                <div class="desc">
+                    Transferred to <span class="highlight">Adiala Jail</span>, Rawalpindi.
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="node active"></div>
+                <div class="date"><strong>●</strong> PRESENT</div>
+                <div class="title">Incarceration</div>
+                <div class="desc">
+                    Continues at <span class="highlight">Adiala Jail</span>.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ─── THREE CONCEPTS ─── -->
+    <section class="concepts-section">
+        <div class="concepts-grid">
+            <div class="concept-card">
+                <div class="big">Millions <span class="accent">Still</span> Stand</div>
+                <div class="sub">A nation united in hope</div>
+            </div>
+            <div class="concept-card">
+                <div class="big">A Vision <span class="accent">Still</span> Alive</div>
+                <div class="sub">His dream endures</div>
+            </div>
+            <div class="concept-card">
+                <div class="big">A Pakistan <span class="accent">Still</span> Possible</div>
+                <div class="sub">The promise remains</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── BOTTOM QUOTE ─── -->
+    <div class="bottom-quote">
+        <div class="ik-line">IK &nbsp; <span class="accent">·</span> &nbsp; Ideas are stronger than prisons.</div>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="footer">
+        <div class="footer-nav">
+            <a href="#">Home</a>
+            <a href="#">Timeline</a>
+            <a href="#">About</a>
+            <a href="#">Updates</a>
+            <a href="#">Gallery</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-right">
+            <em>#FreeImranKhan</em>
+        </div>
+    </footer>
+
+    <div class="hashtag"><span>#FreelmranKhan</span></div>
+
+    <!-- ─── LIVE COUNTER SCRIPT ─── -->
+    <script>
+        (function() {
+            // Arrest date: 5 August 2023, 12:59 PM PKT (UTC+5)
+            // PKT = UTC+5, so 12:59 PKT = 07:59 UTC
+            const arrestDate = new Date(Date.UTC(2023, 7, 5, 7, 59, 0)); // month is 0-indexed
+
+            const daysEl = document.getElementById('daysDisplay');
+            const hoursEl = document.getElementById('hoursDisplay');
+            const minutesEl = document.getElementById('minutesDisplay');
+            const secondsEl = document.getElementById('secondsDisplay');
+
+            function pad(n) {
+                return String(n).padStart(2, '0');
+            }
+
+            function updateCounter() {
+                const now = new Date();
+                const diffMs = now - arrestDate;
+
+                if (diffMs < 0) {
+                    daysEl.textContent = '0';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const totalSeconds = Math.floor(diffMs / 1000);
+                const days = Math.floor(totalSeconds / 86400);
+                const hours = Math.floor((totalSeconds % 86400) / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+
+                daysEl.textContent = days.toLocaleString();
+                hoursEl.textContent = pad(hours);
+                minutesEl.textContent = pad(minutes);
+                secondsEl.textContent = pad(seconds);
+            }
+
+            updateCounter();
+            setInterval(updateCounter, 1000);
+        })();
+    </script>
+
+</body>
+</html>
